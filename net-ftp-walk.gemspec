@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "net-ftp-walk"
-  spec.version       = "1.0.0"
+  spec.version       = "1.0.1"
   spec.authors       = ["Toru Nayuki"]
   spec.email         = ["tnayuki@icloud.com"]
   spec.summary       = "walks a FTP directory, also supports \"du\" and mirroring"
