@@ -40,7 +40,9 @@ class Net::FTP
       remote_file = remote_dir + '/' + common_path + '/' + entry.basename
       local_file = local_dir + '/' + common_path + '/' + entry.basename
 
-      if File.exist?(local_file)
+      if not Dir.exists?(local_dir + '/' + common_path) then
+        Dir.mkdir(local_dir + '/' + common_path)
+      elsif File.exist?(local_file)
         next if File.size(local_file) == entry.filesize && File.mtime(local_file) == entry.mtime
       end
 
