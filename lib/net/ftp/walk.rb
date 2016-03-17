@@ -31,10 +31,12 @@ class Net::FTP
     sum
   end
 
-  def mirror(remote_dir, local_dir, parser_class = Net::FTP::List)
+  def mirror(remote_dir, local_dir, includes = [], parser_class = Net::FTP::List)
     queue = []
 
     walk(remote_dir, parser_class) do |path, entry|
+      next if includes.count > 0 && includes.select{|pattern| File.fnmatch(pattern, entry.basename)}.count == 0
+
       common_path = path[remote_dir.length + 1 .. -1]
 
       remote_file = remote_dir + '/' + common_path + '/' + entry.basename
